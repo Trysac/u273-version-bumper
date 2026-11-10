@@ -1,21 +1,26 @@
-# 0001. Record architecture decisions
+# 0001 — Record architecture decisions
 
-- Status: accepted
-- Date: 2026
+## Status
+
+Accepted.
 
 ## Context
 
-Decisions about this utility's design, dependencies and public API need to be understandable later, by people
-and by coding agents that have no access to the original conversation.
+The project needs a durable record of why its architecture looks the way it does, so that
+future changes can be evaluated against the original constraints rather than re-litigated
+from memory. The library has a small surface and few decisions, but they matter: purity,
+zero runtime dependencies and formatting preservation are the product.
 
 ## Decision
 
-We record every significant decision as a numbered Markdown file in `docs/decisions/`, named
-`NNNN-short-title.md`, with the sections Context, Decision and Consequences. Records are immutable once
-accepted; a later record supersedes an earlier one and links to it.
+Architecture decisions are recorded as numbered Markdown files under `docs/decisions/`,
+named `NNNN-title.md`, and linked from the relevant documentation. Each record states its
+status, context, decision and consequences.
 
 ## Consequences
 
-- The reasoning behind the code is versioned next to it.
-- The documentation check requires at least one record in `docs/decisions/`.
-- Changing a past decision requires a new record instead of rewriting history.
+- The reasoning behind the pure-planner/module split and the zero-dependency rule is
+  discoverable.
+- Contributors add a record whenever they make a decision that is costly to reverse.
+- The documentation gate (`docs-manifest.json`) requires at least one record, so the tree
+  cannot silently disappear.
