@@ -9,4 +9,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 
+- Implemented @trysac/version-bumper: a planner for coordinated version bumps across JavaScript workspaces with range updates and formatting-preserving apply.
 - Initial project structure from the factory utility template.

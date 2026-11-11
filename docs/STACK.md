@@ -1,23 +1,35 @@
 # Stack
 
-## Used
+## Runtime
 
-| Tool | Purpose | Why |
-|---|---|---|
-| TypeScript (strict) | Language and type checking | Typed public API and declarations for consumers. |
-| Node.js 20+ | Runtime | Maintained LTS lines with native ES modules. |
-| Vitest + `@vitest/coverage-v8` | Tests and coverage | Fast, ESM-native, runs TypeScript without a build step. |
-| Biome | Lint and format | One fast tool for both, single config file. |
-| gitleaks | Secret scanning | Standard scanner; runs locally and in CI. |
-| GitHub Actions + Dependabot | CI wrapper and updates | Runs the same local gates on Linux and Windows. |
+- **TypeScript**, compiled to ES modules for **Node.js 20+** (the `engines` field allows
+  current LTS releases).
+- **No runtime dependencies.** The library is pure; it imports no `node:` modules. The CLI
+  receives an `io` object instead of touching Node APIs, keeping the code testable and the
+  supply chain empty.
+- **No bundler.** `tsc` emits `dist/` declarations and JavaScript directly.
 
-## Discarded
+## Development
 
-| Tool | Why not |
+| Tool | Purpose |
 |---|---|
-| ESLint + Prettier | Two tools and several configs where Biome covers both. |
-| Jest | Needs extra transforms for ESM and TypeScript; slower. |
-| Shell scripts for gates | Not portable to Windows; the gate runner is a Node script. |
-| Bundlers (tsup, Rollup) | Unneeded for a small ESM library; `tsc` emits what is published. |
+| TypeScript | Strict type checking (`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`) |
+| Biome | Formatting and linting |
+| Vitest + `@vitest/coverage-v8` | Unit tests and coverage thresholds |
+| ESLint + `eslint-plugin-security` | Security-focused lint rules |
+| Semgrep | Factory rule scan over `src/` |
+| gitleaks | Secret scanning |
+| `npm audit` / OSV-Scanner | Vulnerability scanning of the lockfile |
 
-Add a row whenever a dependency or tool is added or rejected.
+## Considered and discarded
+
+- **A full release manager (changesets, release-please):** couples planning to changelogs,
+  git history and publishing; this project deliberately stays a pure planner.
+- **YAML or TOML workspace formats:** the target is `package.json`, which is JSON.
+- **Runtime dependencies for SemVer parsing:** the accepted grammar is strict
+  `MAJOR.MINOR.PATCH`, small enough to parse directly and keep the package dependency-free.
+
+## Adding a dependency
+
+Runtime dependencies need a recorded reason here and must not break the "no `node:` imports
+in library code" rule. Prefer none.
