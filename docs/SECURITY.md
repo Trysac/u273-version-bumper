@@ -37,4 +37,4 @@ No secrets are required to use the library. Error messages may contain fragments
 
 ## Reporting
 
-Report suspected vulnerabilities privately through GitHub security advisories. The specification does not define response-time commitments.
+Report suspected vulnerabilities privately through GitHub security advisories. No response-time commitment is offered; reports are handled best-effort.

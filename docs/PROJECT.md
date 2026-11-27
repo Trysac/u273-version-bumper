@@ -29,7 +29,7 @@ Out of scope:
 
 ## Timeline
 
-The specification does not define a timeline.
+No dated milestones are recorded yet.
 
 ## Effort
 
