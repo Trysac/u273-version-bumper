@@ -7,9 +7,15 @@ Plan and apply coordinated version bumps across a JavaScript workspace. A caller
 
 ## Installation
 
-```bash
-npm install @trysac/version-bumper
+Not published to npm yet. Build it from a clone, then install it from the local path:
+
+```sh
+git clone https://github.com/Trysac/u273-version-bumper.git
+cd u273-version-bumper && npm ci && npm run build
+cd ../your-project && npm install ../u273-version-bumper
 ```
+
+Imports keep the package name: `import { ... } from "@trysac/version-bumper"`.
 
 ## Quick start
 
